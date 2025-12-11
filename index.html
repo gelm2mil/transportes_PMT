@@ -77,7 +77,7 @@
 
 
     <!-- ========================= -->
-    <!-- BOTÓN ESPECIAL DE DENUNCIA -->
+    <!-- BOTÓN DE DENUNCIA         -->
     <!-- ========================= -->
     <div class="contacto-wrapper" style="margin-top:35px;">
         <a href="denuncias.html" class="btn-contacto">
@@ -97,84 +97,36 @@
 </div>
 
 <script>
+// FECHA DEL PIE
 document.getElementById("pie-fecha").innerText =
     new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
-</script>
-<!-- LOGIN OCULTO -->
-<div id="login-overlay" style="
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  backdrop-filter: blur(6px);
-  background: rgba(0,0,0,0.75);
-  z-index:9999;
-  justify-content:center;
-  align-items:center;
-">
-  <div style="
-      background:#050513;
-      padding:25px;
-      border-radius:14px;
-      width:320px;
-      border:1px solid #00ffc8;
-      box-shadow:0 0 18px #00eaff;
-      text-align:center;
-  ">
-      <h3 style="color:#00ffc8; margin-bottom:10px;">
-        🔐 Acceso Privado
-      </h3>
 
-      <input id="clave-panel" type="password" placeholder="Ingrese la clave"
-        style="width:100%; padding:10px; border-radius:10px; background:#000;
-               color:#00ffc8; border:1px solid #00ffc8; text-align:center;">
-      <br><br>
+// =============================================
+// 🔥 ACCESO SECRETO POR TECLADO: G + E + L + M
+// =============================================
+let keys = {G:false, E:false, L:false, M:false};
 
-      <button onclick="entrarPanel()" style="
-          padding:10px 20px; border-radius:999px;
-          border:1px solid #00ffc8;
-          background:transparent;
-          color:#00ffc8; cursor:pointer;
-          text-shadow:0 0 6px #00ffff;
-      ">Ingresar</button>
+document.addEventListener("keydown", function(e){
 
-      <br><br>
-      <button onclick="cerrarLogin()" style="
-          padding:6px 14px; border-radius:999px;
-          background:rgba(255,0,0,0.2);
-          border:1px solid red;
-          color:#ff8080; cursor:pointer;
-      ">Cancelar</button>
-  </div>
-</div>
+    let k = e.key.toUpperCase();
 
-<script>
-// MOSTRAR LOGIN
-function abrirLogin(){
-    document.getElementById("login-overlay").style.display = "flex";
-}
-
-// OCULTAR LOGIN
-function cerrarLogin(){
-    document.getElementById("login-overlay").style.display = "none";
-}
-
-// VALIDAR CLAVE Y ENTRAR
-function entrarPanel(){
-    const clave = document.getElementById("clave-panel").value.trim();
-
-    // 🔥🔥🔥 CLAVE MAESTRA QUE SOLO VOS SABRÁS
-    const claveCorrecta = "GELM2025*";
-
-    if(clave === claveCorrecta){
-        window.location.href = "panel.html";
-    } else {
-        alert("⚠ Clave incorrecta.");
+    if(k in keys){
+        keys[k] = true;
     }
-}
+
+    // Si todas están presionadas → entrar al panel
+    if(keys.G && keys.E && keys.L && keys.M){
+        window.location.href = "panel.html";
+    }
+});
+
+document.addEventListener("keyup", function(e){
+    let k = e.key.toUpperCase();
+    if(k in keys){
+        keys[k] = false;
+    }
+});
 </script>
 
 </body>
 </html>
-
-
