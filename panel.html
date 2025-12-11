@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Panel Administrativo – GELM Transportes PMT</title>
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+.subtitulo {
+  margin: 20px 0 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #00ffc8;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.panel-box {
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(0,255,255,0.35);
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(0,255,255,0.3);
+  margin-bottom: 25px;
+}
+
+.panel-box input,
+.panel-box textarea,
+.panel-box select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #00ffc8;
+  background: #050513;
+  color: #00ffc8;
+}
+
+.btn-accion {
+  margin-top: 12px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #00ffc8;
+  background: transparent;
+  color: #a5ffe5;
+  cursor: pointer;
+  text-shadow: 0 0 5px #00ffff;
+}
+.btn-accion:hover { background: rgba(0,255,255,0.18); }
+
+textarea { resize: vertical; min-height: 80px; }
+
+#salida {
+  white-space: pre-wrap;
+  color: #00ffe0;
+  font-size: 14px;
+  margin-top: 15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+  <div class="header-top">
+    <div class="logo-box"><img src="icons/icon-192.png" /></div>
+    <div class="titulos">
+      <div class="titulos-linea1">PANEL ADMINISTRATIVO</div>
+      <div class="titulos-linea2">Unidad de Transportes – PMT Chimaltenango</div>
+      <div class="titulos-linea3">Sistema Interno de Gestión GELM</div>
+    </div>
+    <div class="logo-box"><img src="icons/icon-512.png" /></div>
+  </div>
+
+  <a href="index.html" class="btn-volver">⬅ Volver al inicio</a>
+
+  <!-- ============================
+       1. RESUMEN DEL DÍA
+  ==============================-->
+  <div class="subtitulo">📝 Resumen del día</div>
+  <div class="panel-box">
+    <label>¿Qué se realizó hoy?</label>
+    <textarea id="resumen"></textarea>
+
+    <button class="btn-accion" onclick="guardarResumen()">
+      Guardar resumen del día
+    </button>
+  </div>
+
+  <!-- ============================
+       2. REGISTRO DE OPERATIVOS
+  ==============================-->
+  <div class="subtitulo">🚓 Registrar Operativo</div>
+
+  <div class="panel-box">
+    <label>Fecha:</label>
+    <input type="date" id="op_fecha" />
+
+    <label>Tipo de operativo:</label>
+    <select id="op_tipo">
+      <option>Supervisión general</option>
+      <option>Revisión documental</option>
+      <option>Operativo nocturno</option>
+      <option>Rutas y transporte colectivo</option>
+      <option>Control de mototaxis</option>
+      <option>Otro operativo</option>
+    </select>
+
+    <label>Unidades supervisadas:</label>
+    <input type="number" id="op_unidades" />
+
+    <label>Resultados u observaciones:</label>
+    <textarea id="op_obs"></textarea>
+
+    <button class="btn-accion" onclick="guardarOperativo()">
+      Registrar operativo
+    </button>
+  </div>
+
+  <!-- ============================
+       3. DENUNCIAS RECIBIDAS
+  ==============================-->
+  <div class="subtitulo">📨 Denuncias ciudadanas</div>
+
+  <div class="panel-box">
+    <label>Placa reportada:</label>
+    <input type="text" id="den_placa" />
+
+    <label>Tipo de transporte:</label>
+    <select id="den_tipo">
+      <option>Mototaxi</option>
+      <option>Bus urbano</option>
+      <option>Bus extraurbano</option>
+      <option>Microbús</option>
+      <option>Tuc-tuc</option>
+      <option>Particular</option>
+    </select>
+
+    <label>Problema observado:</label>
+    <textarea id="den_problema"></textarea>
+
+    <label>Ubicación:</label>
+    <input type="text" id="den_ubicacion" />
+
+    <button class="btn-accion" onclick="guardarDenuncia()">
+      Registrar denuncia
+    </button>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div id="salida">Nada registrado aún…</div>
+
+</div>
+
+<script>
+// ===============================
+//  RESUMEN DEL DÍA
+// ===============================
+function guardarResumen(){
+  const texto = document.getElementById("resumen").value;
+  if(!texto.trim()) return alert("Debe escribir un resumen.");
+
+  const data = {
+    fecha: new Date().toLocaleDateString("es-GT"),
+    resumen: texto.trim()
+  };
+
+  localStorage.setItem("resumen_dia", JSON.stringify(data));
+  mostrar("Resumen guardado ✔");
+}
+
+// ===============================
+//  OPERATIVOS
+// ===============================
+function guardarOperativo(){
+  let fecha = document.getElementById("op_fecha").value;
+  let tipo = document.getElementById("op_tipo").value;
+  let unidades = document.getElementById("op_unidades").value;
+  let obs = document.getElementById("op_obs").value;
+
+  if(!fecha || !obs.trim()) return alert("Complete los datos del operativo.");
+
+  const nuevo = { fecha, tipo, unidades, obs };
+
+  let lista = JSON.parse(localStorage.getItem("operativos") || "[]");
+  lista.push(nuevo);
+  localStorage.setItem("operativos", JSON.stringify(lista));
+
+  mostrar("Operativo registrado ✔");
+}
+
+// ===============================
+//  DENUNCIAS
+// ===============================
+function guardarDenuncia(){
+  let placa = document.getElementById("den_placa").value;
+  let tipo = document.getElementById("den_tipo").value;
+  let problema = document.getElementById("den_problema").value;
+  let ubicacion = document.getElementById("den_ubicacion").value;
+
+  if(!placa || !problema.trim()) return alert("Debe ingresar placa y problema.");
+
+  const denuncia = { fecha: new Date().toLocaleString("es-GT"), placa, tipo, problema, ubicacion };
+
+  let lista = JSON.parse(localStorage.getItem("denuncias") || "[]");
+  lista.push(denuncia);
+  localStorage.setItem("denuncias", JSON.stringify(lista));
+
+  mostrar("Denuncia registrada ✔");
+}
+
+// ===============================
+//  MOSTRAR MENSAJE
+// ===============================
+function mostrar(texto){
+  document.getElementById("salida").innerText = texto;
+  setTimeout(()=>{ document.getElementById("salida").innerText = ""; }, 4000);
+}
+</script>
+
+</body>
+</html>
