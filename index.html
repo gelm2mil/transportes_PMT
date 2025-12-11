@@ -31,8 +31,23 @@
         </div>
     </div>
 
+
     <!-- ========================= -->
-    <!-- ESTADÍSTICAS EN VIVO      -->
+    <!-- MENÚ PRINCIPAL            -->
+    <!-- ========================= -->
+    <div style="text-align:center; margin-top:25px;">
+        <a class="btn-contacto" href="info.html">Información institucional</a>
+        <a class="btn-contacto" href="registro.html">Transporte autorizado</a>
+        <a class="btn-contacto" href="supervisiones.html">Supervisiones</a>
+        <a class="btn-contacto" href="denuncias.html">Denuncias</a>
+        <a class="btn-contacto" href="consultas.html">Consultas rápidas</a>
+        <a class="btn-contacto" href="educacion.html">Educación vial</a>
+        <a class="btn-contacto" href="galeria.html">Galería</a>
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- ESTADÍSTICAS PÚBLICAS     -->
     <!-- ========================= -->
     <h2 style="color:#00ffc8; text-align:center; margin-top:25px;">Panel Público — Datos Generales</h2>
 
@@ -54,58 +69,20 @@
         </div>
 
         <div class="tarjeta-info">
-            <h3>Actividades realizadas hoy</h3>
+            <h3>Actividades de hoy</h3>
             <p id="statActividades">Pendiente de actualización</p>
         </div>
 
     </div>
 
-    <!-- ========================= -->
-    <!-- CONSULTA RÁPIDA           -->
-    <!-- ========================= -->
-    <div id="consultas" style="margin-top:35px;">
-        <div class="titulos-linea1" style="text-align:center; font-size:18px;">
-            Consulta rápida de transporte autorizado y registros operativos
-        </div>
-
-        <div class="buscador">
-            <input id="entrada" type="text" placeholder="Placa, DPI, No. licencia, documento">
-            <button onclick="buscar()">Buscar</button>
-        </div>
-
-        <div id="resultado"></div>
-    </div>
 
     <!-- ========================= -->
-    <!-- SUPERVISIONES RECIENTES   -->
+    <!-- BOTÓN ESPECIAL DE DENUNCIA -->
     <!-- ========================= -->
-    <h2 style="color:#00ffc8; margin-top:40px;">Supervisiones recientes</h2>
-    <p>No hay supervisiones publicadas. (Pendiente actualización diaria)</p>
-
-    <!-- ========================= -->
-    <!-- DENUNCIAS DE VECINOS      -->
-    <!-- ========================= -->
-    <h2 style="color:#00ffc8; margin-top:40px;">Denuncias de vecinos (Transporte)</h2>
-    <p>Use el siguiente formulario para reportar problemas con unidades de transporte dentro del municipio:</p>
-
-    <div class="buscador" style="max-width:500px; margin:auto; margin-top:15px;">
-        <input type="text" placeholder="Placa o identificación">
-        <input type="text" placeholder="Descripción del problema">
-        <input type="text" placeholder="Lugar (zona, sector, punto)">
-        <button style="width:100%;">Enviar denuncia</button>
-    </div>
-
-    <p style="text-align:center; margin-top:8px; color:#66ffe6;">
-        Su denuncia será procesada únicamente por la Unidad de Transportes.
-    </p>
-
-    <!-- ========================= -->
-    <!-- BOTÓN DE CONTACTO         -->
-    <!-- ========================= -->
-    <div class="contacto-wrapper">
-        <button class="btn-contacto">
-            <span class="icono">💬</span> Más información / Contactar unidad
-        </button>
+    <div class="contacto-wrapper" style="margin-top:35px;">
+        <a href="denuncias.html" class="btn-contacto">
+            🚨 Reportar transporte irregular
+        </a>
     </div>
 
     <!-- ========================= -->
@@ -122,13 +99,6 @@
 <script>
 document.getElementById("pie-fecha").innerText =
     new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
-
-function buscar(){
-    const v = document.getElementById("entrada").value.trim();
-    if(v===""){ alert("Ingrese búsqueda"); return; }
-    document.getElementById("resultado").innerHTML =
-        `<p style='text-align:center; margin-top:10px;'>🔎 Buscando: <b>${v}</b>… (Aquí irá tu sistema real)</p>`;
-}
 </script>
 
 </body>
