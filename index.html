@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Transportes PMT – Chimaltenango | Unidad Oficial</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transporte PMT — Plataforma Oficial GELM</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -10,18 +11,28 @@
 
 <div class="contenedor">
 
-    <!-- ================= ENCABEZADO ================= -->
+    <!-- ========================== -->
+    <!-- ENCABEZADO Y LOGOS        -->
+    <!-- ========================== -->
     <div class="header-top">
 
         <div class="logo-box">
-            <img src="pmt_logo.png" alt="PMT">
+            <img src="pmt.png" alt="PMT">
         </div>
 
         <div class="titulos">
-            <div class="titulos-linea1">POLICÍA MUNICIPAL DE TRÁNSITO - CHIMALTENANGO</div>
-            <div class="titulos-linea2">UNIDAD DE TRANSPORTES</div>
-            <div class="titulos-linea3">Control • Supervisión • Regulación • Ordenamiento Vial</div>
-            <div class="titulos-linea4">Plataforma oficial de consulta y publicación operativa</div>
+            <div class="titulos-linea1">
+                POLICÍA MUNICIPAL DE TRÁNSITO - CHIMALTENANGO
+            </div>
+            <div class="titulos-linea2">
+                UNIDAD DE TRANSPORTES
+            </div>
+            <div class="titulos-linea3">
+                Control • Supervisión • Regulación • Ordenamiento Vial
+            </div>
+            <div class="titulos-linea4">
+                Plataforma oficial de consulta y publicación operativa
+            </div>
         </div>
 
         <div class="logo-box">
@@ -29,110 +40,90 @@
         </div>
 
     </div>
-    <!-- ================= FIN ENCABEZADO ================= -->
 
-
-    <!-- ================= SECCIÓN 1 – CONSULTA ================= -->
-    <center id="estado">Consulta rápida de transporte autorizado y registros operativos</center>
-
+    <!-- ========================== -->
+    <!-- CONSULTA RÁPIDA           -->
+    <!-- ========================== -->
     <div class="buscador">
-        <input type="text" id="busqueda" placeholder="Placa, DPI, No. licencia, documento…">
+        <input id="entrada" type="text" placeholder="Placa, DPI, No. licencia, documento…">
         <button onclick="buscar()">Buscar</button>
     </div>
 
+    <div id="estado">Escribe algo para comenzar una consulta…</div>
+
     <div id="resultado"></div>
 
-    <div class="nota">
-        Puedes escribir con guiones o sin guiones — Ejemplos:
-        <br>1856 12258 0413 • 1856122580413 • 1056-12250413 • M-123BBB • 40 (número de calcomanía)
-    </div>
-
-
-    <!-- ================= SECCIÓN 2 – INFORMACIÓN INSTITUCIONAL ================= -->
-    <h2 style="color:#00ffc8; text-shadow:0 0 10px #00ffff;">Información de la Unidad</h2>
-
+    <!-- ========================== -->
+    <!-- INFORMACIÓN DE LA UNIDAD  -->
+    <!-- ========================== -->
+    <h2 style="color:#00ffc8; margin-top:40px;">Información de la Unidad</h2>
     <p>
-        La Unidad de Transportes de la Policía Municipal de Tránsito de Chimaltenango es la encargada de 
-        supervisar, controlar y regular el transporte colectivo, especial, municipal y privado dentro del 
-        municipio. Se garantiza la seguridad vial, el cumplimiento normativo y la correcta operación de 
-        unidades autorizadas.
+        La Unidad de Transportes de la Policía Municipal de Tránsito de Chimaltenango es la encargada de supervisar,
+        controlar y regular el transporte colectivo, especial, municipal y privado dentro del municipio.
+        Su labor garantiza seguridad vial, ordenamiento urbano y cumplimiento normativo.
     </p>
 
-    <div class="nota">— Encargado de Unidad: <b>GELM</b> —</div>
+    <p style="text-align:center; margin-top:6px; color:#6ff;">
+        — Encargado de Unidad: <b>GELM</b> —
+    </p>
 
-
-    <!-- ================= SECCIÓN 3 – SUPERVISIONES ================= -->
-    <h2 style="color:#00ffc8; text-shadow:0 0 10px #00ffff;">Supervisiones recientes</h2>
-
-    <div id="supervisiones">
-        <!-- Estos se llenarán manualmente o automáticamente luego -->
-        <p>No hay supervisiones publicadas. (Pendiente publicación diaria)</p>
+    <!-- ========================== -->
+    <!-- SUPERVISIONES RECIENTES   -->
+    <!-- ========================== -->
+    <h2 style="color:#00ffc8; margin-top:35px;">Supervisiones recientes</h2>
+    <div id="supervisiones-box">
+        <p>No hay supervisiones publicadas. (Publicación diaria pendiente)</p>
     </div>
 
-
-    <!-- ================= SECCIÓN 4 – DENUNCIAS ================= -->
-    <h2 style="color:#00ffc8; text-shadow:0 0 10px #00ffff;">Denuncias de vecinos (Transporte)</h2>
-
+    <!-- ========================== -->
+    <!-- DENUNCIAS DE VECINOS      -->
+    <!-- ========================== -->
+    <h2 style="color:#00ffc8; margin-top:35px;">Denuncias de vecinos (Transporte)</h2>
     <p>Use el siguiente formulario para reportar problemas con unidades de transporte dentro del municipio:</p>
 
-    <div class="buscador" style="flex-direction:column; max-width:450px;">
-        <input id="den_placa" placeholder="Placa o identificación">
-        <input id="den_desc" placeholder="Descripción del problema">
-        <input id="den_zona" placeholder="Lugar (zona, sector, punto)">
+    <div class="buscador" style="flex-direction:column; max-width:500px; margin:auto;">
+        <input id="den_placa" type="text" placeholder="Placa o identificación">
+        <input id="den_desc" type="text" placeholder="Descripción del problema">
+        <input id="den_lugar" type="text" placeholder="Lugar (zona, sector, punto)">
         <button onclick="enviarDenuncia()">Enviar denuncia</button>
     </div>
 
-    <div class="nota">Su denuncia será procesada únicamente por la Unidad de Transportes.</div>
+    <p style="text-align:center; color:#ffa;">Su denuncia será procesada únicamente por la Unidad de Transportes.</p>
 
-
-    <!-- ================= CONTACTO ================= -->
+    <!-- ========================== -->
+    <!-- BOTÓN DE CONTACTO         -->
+    <!-- ========================== -->
     <div class="contacto-wrapper">
         <button class="btn-contacto">
-            <span class="icono">📞</span> Más información / Contactar unidad
+            <span class="icono">📞</span>
+            Más información / Contactar unidad
         </button>
     </div>
 
-
-    <!-- ================= PIE ================= -->
+    <!-- ========================== -->
+    <!-- PIE DE PÁGINA             -->
+    <!-- ========================== -->
     <div class="pie">
-        2014 - 2025 | BY GELM | Delegación de Transportes PMT - Chimaltenango
-        <br><span id="pie-linea2">Sistema oficial de consulta, publicación y supervisión</span>
+        <div>2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango</div>
+        <div id="pie-linea2">Sistema oficial — uso municipal autorizado</div>
         <div id="pie-fecha"></div>
     </div>
 
 </div>
 
-
-
-<!-- =================== SCRIPTS =================== -->
+<!-- ========== SCRIPTS ========= -->
 <script>
-// FECHA AUTOMÁTICA
-document.getElementById("pie-fecha").textContent =
-    new Date().toLocaleString("es-GT", { dateStyle:"full", timeStyle:"short" });
+document.getElementById("pie-fecha").innerText =
+    new Date().toLocaleString("es-GT", { dateStyle: "full", timeStyle: "short" });
 
-// BUSCADOR (versión simple)
 function buscar(){
-    let q = document.getElementById("busqueda").value.trim();
-    if(q===""){
-        alert("Escriba una placa o dato para buscar.");
-        return;
-    }
-    document.getElementById("resultado").innerHTML =
-        "<p style='color:#00ffc8;'>Buscando: <b>"+q+"</b>… (Aquí irá tu sistema real)</p>";
+    let v = document.getElementById("entrada").value;
+    document.getElementById("estado").innerHTML =
+        "Buscando: <b>" + v + "</b>… (Aquí irá tu sistema real)";
 }
 
-// DENUNCIAS
 function enviarDenuncia(){
-    let p = document.getElementById("den_placa").value.trim();
-    let d = document.getElementById("den_desc").value.trim();
-    let z = document.getElementById("den_zona").value.trim();
-
-    if(p==="" || d===""){
-        alert("Debe ingresar al menos placa y descripción.");
-        return;
-    }
-
-    alert("Denuncia enviada correctamente.\nPlaca: "+p+"\nDescripción: "+d+"\nZona: "+z);
+    alert("Denuncia enviada correctamente (versión demo).");
 }
 </script>
 
