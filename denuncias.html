@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denuncias de Transporte – PMT Chimaltenango</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+.campo {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 12px;
+  border: 1px solid #00ffc8;
+  background: #050513;
+  color: #00ffc8;
+  font-size: 15px;
+  box-shadow: 0 0 12px rgba(0,255,255,0.25);
+}
+
+.campo::placeholder {
+  color: #66ffe6;
+}
+
+#btnEnviar {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #00ffff, #5f00ff);
+  color: #000;
+  text-shadow: 0 0 4px #00ffea;
+  box-shadow: 0 0 20px rgba(0,255,255,0.6);
+}
+
+#btnEnviar:hover {
+  filter: brightness(1.15);
+}
+
+#confirmacion {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(0,255,180,0.08);
+  border: 1px solid #00ffc8;
+  display: none;
+  color: #a5ffe5;
+  text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <!-- ENCABEZADO -->
+    <div class="header-top">
+        <div class="logo-box">
+            <img src="icons/icon-192.png" alt="PMT">
+        </div>
+
+        <div class="titulos">
+            <div class="titulos-linea1">DENUNCIAS CIUDADANAS</div>
+            <div class="titulos-linea2">Unidad de Transportes – PMT Chimaltenango</div>
+            <div class="titulos-linea3">Reporte de transporte irregular o mala conducta</div>
+        </div>
+
+        <div class="logo-box">
+            <img src="icons/icon-512.png" alt="GELM">
+        </div>
+    </div>
+
+    <!-- BOTÓN VOLVER -->
+    <div style="text-align:center; margin-top:10px;">
+        <a class="btn-contacto" href="index.html">⬅ Volver a inicio</a>
+    </div>
+
+    <h2 style="color:#00ffc8; margin-top:25px;">Formulario de denuncia</h2>
+
+    <p style="color:#cfcfcf;">
+        Utilice este formulario para reportar problemas con unidades de transporte público, especial, urbano o mototaxis operando dentro del municipio.
+        La información será enviada al sistema interno de la Unidad de Transportes.
+    </p>
+
+    <!-- FORMULARIO -->
+    <input type="text" id="placa" class="campo" placeholder="Placa o identificación del vehículo">
+    
+    <select id="tipo" class="campo">
+        <option value="">Tipo de transporte</option>
+        <option>Urbano</option>
+        <option>Colectivo</option>
+        <option>Especial</option>
+        <option>Mototaxi</option>
+        <option>Particular (mal uso de transporte)</option>
+    </select>
+
+    <textarea id="problema" class="campo" rows="3" placeholder="Descripción del problema observado"></textarea>
+
+    <input type="text" id="lugar" class="campo" placeholder="Lugar / zona / sector / punto">
+    
+    <input type="datetime-local" id="fecha" class="campo">
+
+    <textarea id="detalle" class="campo" rows="3" placeholder="Testimonio o detalles adicionales (opcional)"></textarea>
+
+    <label style="color:#00ffc8; font-size:14px;">Adjuntar foto (opcional):</label>
+    <input type="file" id="foto" accept="image/*" class="campo">
+
+    <button id="btnEnviar">Enviar denuncia</button>
+
+    <div id="confirmacion">
+        ✔ Su denuncia fue registrada correctamente.<br>
+        Será procesada por la Unidad de Transportes.
+    </div>
+
+    <!-- NOTA -->
+    <p class="nota">
+        Su información es confidencial y solo será utilizada para fines de supervisión operativa.
+    </p>
+
+    <!-- PIE -->
+    <div class="pie">
+        2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango<br>
+        Plataforma oficial de denuncias • Sistema controlado por GELM<br>
+        <div id="pie-fecha"></div>
+    </div>
+
+</div>
+
+<script>
+// Muestra mensaje sin recargar
+document.getElementById("btnEnviar").onclick = function () {
+    document.getElementById("confirmacion").style.display = "block";
+
+    // Limpia todo
+    document.getElementById("placa").value = "";
+    document.getElementById("tipo").value = "";
+    document.getElementById("problema").value = "";
+    document.getElementById("lugar").value = "";
+    document.getElementById("fecha").value = "";
+    document.getElementById("detalle").value = "";
+    document.getElementById("foto").value = "";
+};
+
+document.getElementById("pie-fecha").innerText =
+    new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
+</script>
+
+</body>
+</html>
