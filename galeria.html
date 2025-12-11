@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería de Operativos – PMT Chimaltenango</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* Contenedor grid */
+.galeria-grid {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+/* Tarjetas */
+.card-foto {
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.15);
+  overflow: hidden;
+  transition: transform 0.22s ease-out, box-shadow 0.22s;
+}
+
+.card-foto img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-foto:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 35px rgba(0,255,255,0.4);
+}
+
+.info-foto {
+  padding: 10px;
+  color: #cfcfcf;
+  font-size: 13px;
+  background: rgba(0,255,255,0.04);
+  border-top: 1px solid rgba(0,255,255,0.25);
+}
+
+.info-foto strong {
+  color: #00ffc8;
+}
+
+.btn-volver {
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid #00ffc8;
+  color: #a5ffe5;
+  background: transparent;
+  cursor: pointer;
+  text-shadow: 0 0 6px #00ffff;
+  box-shadow: 0 0 14px rgba(0,255,255,0.5);
+}
+.btn-volver:hover { background: rgba(0,255,255,0.2); }
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <!-- HEADER -->
+    <div class="header-top">
+        <div class="logo-box">
+            <img src="icons/icon-192.png" alt="PMT">
+        </div>
+
+        <div class="titulos">
+            <div class="titulos-linea1">GALERÍA DE OPERATIVOS</div>
+            <div class="titulos-linea2">Unidad de Transportes – PMT Chimaltenango</div>
+            <div class="titulos-linea3">Resultados visuales de supervisión y control</div>
+        </div>
+
+        <div class="logo-box">
+            <img src="icons/icon-512.png" alt="GELM">
+        </div>
+    </div>
+
+    <!-- VOLVER -->
+    <div style="text-align:center;">
+        <a href="index.html" class="btn-volver">⬅ Volver a inicio</a>
+    </div>
+
+
+    <!-- DESCRIPCIÓN -->
+    <p style="color:#cfcfcf;">
+        En esta galería se publican fotografías de operativos realizados por la Unidad de Transportes PMT.
+        No se muestran datos personales de ciudadanos ni de pilotos.  
+        El enfoque es únicamente operativo, institucional y preventivo.
+    </p>
+
+    <!-- GALERÍA -->
+    <div class="galeria-grid">
+
+        <!-- EJEMPLO 1 -->
+        <div class="card-foto">
+            <img src="https://images.unsplash.com/photo-1529921879218-f3f1f1d7a2b9?auto=format&fit=crop&w=800&q=60" alt="Operativo 1">
+            <div class="info-foto">
+                <strong>Operativo nocturno</strong><br>
+                Zona 1 • Supervisión de mototaxis • 08/12/2025
+            </div>
+        </div>
+
+        <!-- EJEMPLO 2 -->
+        <div class="card-foto">
+            <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=800&q=60" alt="Operativo 2">
+            <div class="info-foto">
+                <strong>Verificación de rutas</strong><br>
+                Sector Terminal • Transporte colectivo • 10/12/2025
+            </div>
+        </div>
+
+        <!-- EJEMPLO 3 -->
+        <div class="card-foto">
+            <img src="https://images.unsplash.com/photo-1544825461-5f56f2922389?auto=format&fit=crop&w=800&q=60" alt="Operativo 3">
+            <div class="info-foto">
+                <strong>Supervisión especial</strong><br>
+                Zona 5 • Acciones preventivas • 06/12/2025
+            </div>
+        </div>
+
+        <!-- EJEMPLO 4 -->
+        <div class="card-foto">
+            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=60" alt="Operativo 4">
+            <div class="info-foto">
+                <strong>Control matutino</strong><br>
+                Alameda • Revisión documental • 09/12/2025
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PIE -->
+    <div class="pie" style="margin-top:40px;">
+        2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango<br>
+        Supervisión institucional — Publicación visual de operativos<br>
+        <div id="pie-fecha"></div>
+    </div>
+
+</div>
+
+<script>
+document.getElementById("pie-fecha").innerText =
+    new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
+</script>
+
+</body>
+</html>
