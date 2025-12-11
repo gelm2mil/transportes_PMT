@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultas rápidas – PMT Chimaltenango</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+
+.seccion {
+  margin-top: 35px;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(0,255,255,0.04);
+  border: 1px solid rgba(0,255,200,0.3);
+  box-shadow: 0 0 18px rgba(0,255,255,0.15);
+}
+
+.seccion h3 {
+  color: #00ffc8;
+  text-shadow: 0 0 6px #00ffff;
+  margin-bottom: 10px;
+}
+
+.seccion p, li {
+  color: #cfcfcf;
+  line-height: 1.5em;
+  font-size: 14.5px;
+}
+
+.btn-volver {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid #00ffc8;
+  color: #a5ffe5;
+  background: transparent;
+  cursor: pointer;
+  text-shadow: 0 0 6px #00ffff;
+  box-shadow: 0 0 14px rgba(0,255,255,0.5);
+}
+.btn-volver:hover {
+  background: rgba(0,255,255,0.2);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <!-- HEADER -->
+    <div class="header-top">
+        <div class="logo-box">
+            <img src="icons/icon-192.png" alt="PMT">
+        </div>
+
+        <div class="titulos">
+            <div class="titulos-linea1">CONSULTAS RÁPIDAS</div>
+            <div class="titulos-linea2">Unidad de Transportes – PMT Chimaltenango</div>
+            <div class="titulos-linea3">Guía práctica para ciudadanos y pilotos</div>
+        </div>
+
+        <div class="logo-box">
+            <img src="icons/icon-512.png" alt="GELM">
+        </div>
+    </div>
+
+    <!-- VOLVER -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <a href="index.html" class="btn-volver">⬅ Volver a inicio</a>
+    </div>
+
+
+    <!-- SECCIÓN 1 -->
+    <div class="seccion">
+        <h3>¿Cómo puedo hacer una denuncia?</h3>
+        <p>Puede denunciar transporte irregular, mala conducción o comportamientos inapropiados desde el módulo:</p>
+        <p>➡ <a href="denuncias.html" style="color:#00ffc8; text-decoration:underline;">Formulario de denuncias</a></p>
+
+        <p>Incluya información como:</p>
+        <ul>
+            <li>Placa o identificación del vehículo</li>
+            <li>Tipo de transporte</li>
+            <li>Descripción del problema</li>
+            <li>Fecha, hora y zona</li>
+            <li>Fotografía opcional</li>
+        </ul>
+    </div>
+
+
+    <!-- SECCIÓN 2 -->
+    <div class="seccion">
+        <h3>¿Cómo solicitar la verificación de una unidad?</h3>
+        <p>Puede solicitar que una unidad sea verificada por la PMT en caso de dudas sobre:</p>
+        <ul>
+            <li>Título de operación vencido</li>
+            <li>Documentación incompleta</li>
+            <li>Tarifa incorrecta</li>
+            <li>Mal comportamiento del piloto</li>
+        </ul>
+        <p>Para ello escriba una denuncia o acérquese directamente a la Unidad de Transportes.</p>
+    </div>
+
+
+    <!-- SECCIÓN 3 -->
+    <div class="seccion">
+        <h3>¿Qué hacer si un bus o mototaxi no respeta la tarifa?</h3>
+        <p>Primero, tome nota de la placa o código de identificación.</p>
+        <p>No confronte directamente al piloto. Luego:</p>
+        <ul>
+            <li>Reporte en el módulo de denuncias</li>
+            <li>Incluya zona y hora del incidente</li>
+        </ul>
+        <p>La Unidad de Transportes verificará la situación y tomará las acciones correspondientes.</p>
+    </div>
+
+
+    <!-- SECCIÓN 4 -->
+    <div class="seccion">
+        <h3>Normativa municipal básica para transporte</h3>
+        <ul>
+            <li>Toda unidad debe portar título de operación vigente.</li>
+            <li>El piloto debe tener licencia correspondiente (A, B, C, M).</li>
+            <li>Debe respetar rutas autorizadas por Municipalidad.</li>
+            <li>Se prohíbe alterar tarifas establecidas por Concejo Municipal.</li>
+            <li>Las unidades deben cumplir con revisiones y documentación en regla.</li>
+        </ul>
+    </div>
+
+
+    <!-- SECCIÓN 5 -->
+    <div class="seccion">
+        <h3>¿Qué hago si un conductor actúa de forma agresiva?</h3>
+        <p>
+            Mantenga distancia y no responda a provocaciones. Tome nota de la placa y denuncie.
+            En situaciones graves llame al número de emergencias o reporte a la PMT más cercana.
+        </p>
+    </div>
+
+
+    <!-- PIE -->
+    <div class="pie" style="margin-top: 40px;">
+        2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango<br>
+        Plataforma oficial de consultas para vecinos y pilotos<br>
+        <div id="pie-fecha"></div>
+    </div>
+
+</div>
+
+<script>
+document.getElementById("pie-fecha").innerText =
+    new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
+</script>
+
+</body>
+</html>
