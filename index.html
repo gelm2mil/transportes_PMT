@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transporte PMT — Plataforma Oficial GELM</title>
+<title>Unidad de Transportes PMT – Plataforma Oficial GELM</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -11,101 +11,125 @@
 
 <div class="contenedor">
 
-    <!-- ========================== -->
-    <!-- ENCABEZADO Y LOGOS        -->
-    <!-- ========================== -->
+    <!-- ========================= -->
+    <!-- ENCABEZADO PRINCIPAL      -->
+    <!-- ========================= -->
     <div class="header-top">
-
         <div class="logo-box">
-            <img src="icon-192.png" alt="GELM    ">
+            <img src="icons/icon-192.png" alt="PMT">
         </div>
 
         <div class="titulos">
-            <div class="titulos-linea1">
-                POLICÍA MUNICIPAL DE TRÁNSITO - CHIMALTENANGO
-            </div>
-            <div class="titulos-linea2">
-                UNIDAD DE TRANSPORTES
-            </div>
-            <div class="titulos-linea3">
-                Control • Supervisión • Regulación • Ordenamiento Vial
-            </div>
-            <div class="titulos-linea4">
-                Plataforma oficial de consulta y publicación operativa
-            </div>
+            <div class="titulos-linea1">POLICÍA MUNICIPAL DE TRÁNSITO – CHIMALTENANGO</div>
+            <div class="titulos-linea2">UNIDAD DE TRANSPORTES</div>
+            <div class="titulos-linea3">Control • Supervisión • Regulación • Ordenamiento Vial</div>
+            <div class="titulos-linea4">Plataforma oficial de consulta y publicación operativa</div>
         </div>
 
         <div class="logo-box">
-            <img src="icon-512.png" alt="GELM">
+            <img src="icons/icon-512.png" alt="GELM">
+        </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- ESTADÍSTICAS EN VIVO      -->
+    <!-- ========================= -->
+    <h2 style="color:#00ffc8; text-align:center; margin-top:25px;">Panel Público — Datos Generales</h2>
+
+    <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:15px;">
+
+        <div class="tarjeta-info">
+            <h3>Vehículos registrados</h3>
+            <p id="statVehiculos">398</p>
+        </div>
+
+        <div class="tarjeta-info">
+            <h3>Rutas supervisadas</h3>
+            <p id="statRutas">27</p>
+        </div>
+
+        <div class="tarjeta-info">
+            <h3>Infracciones del día</h3>
+            <p id="statInfracciones">0</p>
+        </div>
+
+        <div class="tarjeta-info">
+            <h3>Actividades realizadas hoy</h3>
+            <p id="statActividades">Pendiente de actualización</p>
         </div>
 
     </div>
 
-    
-    <p style="text-align:center; margin-top:6px; color:#6ff;">
-        — Encargado de Unidad: <b>GELM</b> —
-    </p>
+    <!-- ========================= -->
+    <!-- CONSULTA RÁPIDA           -->
+    <!-- ========================= -->
+    <div id="consultas" style="margin-top:35px;">
+        <div class="titulos-linea1" style="text-align:center; font-size:18px;">
+            Consulta rápida de transporte autorizado y registros operativos
+        </div>
 
-    <!-- ========================== -->
-    <!-- SUPERVISIONES RECIENTES   -->
-    <!-- ========================== -->
-    <h2 style="color:#00ffc8; margin-top:35px;">Supervisiones recientes</h2>
-    <div id="supervisiones-box">
-        <p>No hay supervisiones publicadas. (Publicación diaria pendiente)</p>
+        <div class="buscador">
+            <input id="entrada" type="text" placeholder="Placa, DPI, No. licencia, documento">
+            <button onclick="buscar()">Buscar</button>
+        </div>
+
+        <div id="resultado"></div>
     </div>
 
-    <!-- ========================== -->
+    <!-- ========================= -->
+    <!-- SUPERVISIONES RECIENTES   -->
+    <!-- ========================= -->
+    <h2 style="color:#00ffc8; margin-top:40px;">Supervisiones recientes</h2>
+    <p>No hay supervisiones publicadas. (Pendiente actualización diaria)</p>
+
+    <!-- ========================= -->
     <!-- DENUNCIAS DE VECINOS      -->
-    <!-- ========================== -->
-    <h2 style="color:#00ffc8; margin-top:35px;">Denuncias de vecinos (Transporte)</h2>
+    <!-- ========================= -->
+    <h2 style="color:#00ffc8; margin-top:40px;">Denuncias de vecinos (Transporte)</h2>
     <p>Use el siguiente formulario para reportar problemas con unidades de transporte dentro del municipio:</p>
 
-    <div class="buscador" style="flex-direction:column; max-width:500px; margin:auto;">
-        <input id="den_placa" type="text" placeholder="Placa o identificación">
-        <input id="den_desc" type="text" placeholder="Descripción del problema">
-        <input id="den_lugar" type="text" placeholder="Lugar (zona, sector, punto)">
-        <button onclick="enviarDenuncia()">Enviar denuncia</button>
+    <div class="buscador" style="max-width:500px; margin:auto; margin-top:15px;">
+        <input type="text" placeholder="Placa o identificación">
+        <input type="text" placeholder="Descripción del problema">
+        <input type="text" placeholder="Lugar (zona, sector, punto)">
+        <button style="width:100%;">Enviar denuncia</button>
     </div>
 
-    <p style="text-align:center; color:#ffa;">Su denuncia será procesada únicamente por la Unidad de Transportes.</p>
+    <p style="text-align:center; margin-top:8px; color:#66ffe6;">
+        Su denuncia será procesada únicamente por la Unidad de Transportes.
+    </p>
 
-    <!-- ========================== -->
+    <!-- ========================= -->
     <!-- BOTÓN DE CONTACTO         -->
-    <!-- ========================== -->
+    <!-- ========================= -->
     <div class="contacto-wrapper">
         <button class="btn-contacto">
-            <span class="icono">📞</span>
-            Más información / Contactar unidad
+            <span class="icono">💬</span> Más información / Contactar unidad
         </button>
     </div>
 
-    <!-- ========================== -->
+    <!-- ========================= -->
     <!-- PIE DE PÁGINA             -->
-    <!-- ========================== -->
+    <!-- ========================= -->
     <div class="pie">
-        <div>2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango</div>
-        <div id="pie-linea2">Sistema y registro controlado por GELM</div>
+        2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango<br>
+        Sistema y registro controlado por GELM<br>
         <div id="pie-fecha"></div>
     </div>
 
 </div>
 
-<!-- ========== SCRIPTS ========= -->
 <script>
 document.getElementById("pie-fecha").innerText =
-    new Date().toLocaleString("es-GT", { dateStyle: "full", timeStyle: "short" });
+    new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
 
 function buscar(){
-    let v = document.getElementById("entrada").value;
-    document.getElementById("estado").innerHTML =
-        "Buscando: <b>" + v + "</b>… (Aquí irá tu sistema real)";
-}
-
-function enviarDenuncia(){
-    alert("Denuncia enviada correctamente (versión demo).");
+    const v = document.getElementById("entrada").value.trim();
+    if(v===""){ alert("Ingrese búsqueda"); return; }
+    document.getElementById("resultado").innerHTML =
+        `<p style='text-align:center; margin-top:10px;'>🔎 Buscando: <b>${v}</b>… (Aquí irá tu sistema real)</p>`;
 }
 </script>
 
 </body>
 </html>
-
