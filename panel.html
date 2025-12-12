@@ -1,64 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel Administrativo – Denuncias PMT</title>
-<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Panel Administrativo – GELM Transportes PMT</title>
+<link rel="stylesheet" href="styles.css" />
+
+<!-- Librería para exportar a Excel -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <style>
-/* TABLA NEÓN */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 14px;
-}
+  .subtitulo {
+    margin: 20px 0 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #00ffc8;
+    text-shadow: 0 0 10px #00ffff;
+  }
 
-th, td {
-  padding: 10px;
-  text-align: left;
-  border: 1px solid #00ffc8;
-}
+  .panel-box {
+    background: rgba(0,0,0,0.7);
+    border: 1px solid rgba(0,255,255,0.35);
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 0 18px rgba(0,255,255,0.3);
+    margin-bottom: 25px;
+  }
 
-th {
-  background: #00ffc8;
-  color: #000;
-}
+  .panel-box input,
+  .panel-box textarea,
+  .panel-box select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 1px solid #00ffc8;
+    background: #050513;
+    color: #00ffc8;
+  }
 
-td {
-  background: #0a0f1f;
-  color: #cfcfcf;
-}
+  textarea { resize: vertical; min-height: 80px; }
 
-tr:hover td {
-  background: rgba(0,255,255,0.12);
-}
+  .btn-accion {
+    margin-top: 12px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid #00ffc8;
+    background: transparent;
+    color: #a5ffe5;
+    cursor: pointer;
+    text-shadow: 0 0 5px #00ffff;
+  }
+  .btn-accion:hover { background: rgba(0,255,255,0.18); }
 
-.btn-atendida {
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: #00ff88;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-}
+  .btn-volver {
+    display: inline-block;
+    margin: 18px 0;
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: 1px solid #00ffc8;
+    color: #a5ffe5;
+    text-decoration: none;
+    text-shadow: 0 0 5px #00ffff;
+    box-shadow: 0 0 14px rgba(0,255,255,0.5);
+  }
+  .btn-volver:hover { background: rgba(0,255,255,0.2); }
 
-.btn-atendida:hover {
-  filter: brightness(1.15);
-}
+  #salida {
+    white-space: pre-wrap;
+    color: #00ffe0;
+    font-size: 14px;
+    margin-top: 15px;
+  }
 
-/* BUSCADOR */
-#buscador {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #00ffc8;
-  background: #050513;
-  color: #00ffc8;
-}
+  /* Tabla de denuncias */
+  .tabla-denuncias {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 13px;
+    background: #050509;
+    box-shadow: 0 0 18px rgba(0,255,255,0.15);
+    border-radius: 12px;
+    overflow: hidden;
+  }
 
+  .tabla-denuncias th,
+  .tabla-denuncias td {
+    border: 1px solid rgba(0,255,255,0.15);
+    padding: 6px 8px;
+    text-align: left;
+  }
+
+  .tabla-denuncias th {
+    background: #00ffc8;
+    color: #000;
+    text-shadow: 0 0 4px #00ffff;
+  }
+
+  .tabla-denuncias tbody tr:nth-child(even) {
+    background: #070716;
+  }
+
+  .tabla-denuncias tbody tr:hover {
+    background: #031d24;
+  }
+
+  .btn-borrar {
+    padding: 5px 12px;
+    background: #ff3b3b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 0 0 10px rgba(255,0,0,0.5);
+  }
+  .btn-borrar:hover {
+    background: #ff0000;
+  }
+
+  .badge-estado {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .badge-pendiente {
+    background: rgba(255,215,0,0.12);
+    color: #ffd700;
+    border: 1px solid rgba(255,215,0,0.6);
+  }
+  .badge-resuelto {
+    background: rgba(0,255,120,0.12);
+    color: #00ff7b;
+    border: 1px solid rgba(0,255,120,0.7);
+  }
 </style>
 </head>
 
@@ -66,97 +145,417 @@ tr:hover td {
 
 <div class="contenedor">
 
+  <!-- ENCABEZADO -->
   <div class="header-top">
-    <div class="logo-box"><img src="icons/icon-192.png" alt="PMT"></div>
+    <div class="logo-box"><img src="icons/icon-192.png" alt="PMT" /></div>
     <div class="titulos">
       <div class="titulos-linea1">PANEL ADMINISTRATIVO</div>
-      <div class="titulos-linea2">Denuncias Ciudadanas – PMT Chimaltenango</div>
-      <div class="titulos-linea3">Gestión de denuncias enviadas por la comunidad</div>
+      <div class="titulos-linea2">Unidad de Transportes – PMT Chimaltenango</div>
+      <div class="titulos-linea3">Sistema Interno de Gestión GELM</div>
     </div>
-    <div class="logo-box"><img src="icons/icon-512.png" alt="GELM"></div>
+    <div class="logo-box"><img src="icons/icon-512.png" alt="GELM" /></div>
   </div>
 
   <a href="index.html" class="btn-volver">⬅ Volver al inicio</a>
 
-  <h3 style="color:#00ffc8; margin-top:20px;">Buscar denuncia por placa</h3>
-  <input type="text" id="buscador" placeholder="Escriba placa para filtrar..." oninput="filtrarTabla()">
+  <!-- ============================
+       1. RESUMEN DEL DÍA
+  ==============================-->
+  <div class="subtitulo">📝 Resumen del día</div>
+  <div class="panel-box">
+    <label>¿Qué se realizó hoy?</label>
+    <textarea id="resumen"></textarea>
 
-  <div id="tablaDenuncias"></div>
+    <button class="btn-accion" onclick="guardarResumen()">
+      Guardar resumen del día
+    </button>
 
-  <div class="pie" style="margin-top:22px;">
-    2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango<br>
-    Panel administrativo de denuncias ciudadanas<br>
-    <div id="pie-fecha"></div>
+    <div id="resumenGuardado" style="margin-top:10px; color:#a5ffe5; font-size:13px;"></div>
   </div>
+
+  <!-- ============================
+       2. REGISTRO DE OPERATIVOS
+  ==============================-->
+  <div class="subtitulo">🚓 Registrar operativo</div>
+
+  <div class="panel-box">
+    <label>Fecha:</label>
+    <input type="date" id="op_fecha" />
+
+    <label>Tipo de operativo:</label>
+    <select id="op_tipo">
+      <option>Supervisión general</option>
+      <option>Revisión documental</option>
+      <option>Operativo nocturno</option>
+      <option>Rutas y transporte colectivo</option>
+      <option>Control de mototaxis</option>
+      <option>Otro operativo</option>
+    </select>
+
+    <label>Unidades supervisadas:</label>
+    <input type="number" id="op_unidades" min="0" />
+
+    <label>Resultados u observaciones:</label>
+    <textarea id="op_obs"></textarea>
+
+    <button class="btn-accion" onclick="guardarOperativo()">
+      Registrar operativo
+    </button>
+  </div>
+
+  <!-- ============================
+       3. DENUNCIAS (TABLA + EXPORT)
+  ==============================-->
+  <div class="subtitulo">📨 Denuncias ciudadanas (formulario web)</div>
+
+  <div class="panel-box">
+    <div style="margin-bottom:10px;">
+      <button class="btn-accion" onclick="exportarTodo()">📄 Descargar TODO</button>
+      <button class="btn-accion" onclick="exportarSemana()">📆 Semana</button>
+      <button class="btn-accion" onclick="exportarMes()">🗓 Mes</button>
+    </div>
+
+    <table class="tabla-denuncias">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Placa</th>
+          <th>Tipo</th>
+          <th>Problema</th>
+          <th>Ubicación</th>
+          <th>Contacto</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyDenuncias">
+        <tr>
+          <td colspan="10" style="text-align:center; color:#aaa;">Cargando denuncias…</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================
+       4. REGISTRAR DENUNCIA MANUAL
+  ==============================-->
+  <div class="subtitulo">➕ Registrar denuncia manual</div>
+
+  <div class="panel-box">
+    <label>Placa reportada:</label>
+    <input type="text" id="den_placa" />
+
+    <label>Tipo de transporte:</label>
+    <select id="den_tipo">
+      <option>Mototaxi</option>
+      <option>Bus urbano</option>
+      <option>Bus extraurbano</option>
+      <option>Microbús</option>
+      <option>Tuc-tuc</option>
+      <option>Particular</option>
+    </select>
+
+    <label>Problema observado:</label>
+    <textarea id="den_problema"></textarea>
+
+    <label>Ubicación:</label>
+    <input type="text" id="den_ubicacion" />
+
+    <label>Contacto (teléfono u otro dato):</label>
+    <input type="text" id="den_contacto" />
+
+    <button class="btn-accion" onclick="guardarDenuncia()">
+      Registrar denuncia manual
+    </button>
+  </div>
+
+  <!-- RESULTADOS / MENSAJES -->
+  <div id="salida">Nada registrado aún…</div>
 
 </div>
 
 <script>
-const SHEET_ID = "1Hb4WJWYB-7uRRSFnHEgp2-tc_PtiHA-0M30n41HDf4o";
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbypncaQPe-4i8md4SqTrmxdXclW6bb-6RtJaL8Sc8RnM1wFBJHnwqHGG4f5WKBdEDx_fw/exec";
+  // URL del WebApp de Apps Script (tu enlace)
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbypncaQPe-4i8md4SqTrmxdXclW6bb-6RtJaL8Sc8RnM1wFBJHnwqHGG4f5WKBdEDx_fw/exec";
 
-// Cargar fecha pie
-document.getElementById("pie-fecha").innerText =
-  new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
+  // Arreglo global con las denuncias leídas del Sheet
+  window._denuncias = [];
 
-// Cargar denuncias
-fetch(`${SCRIPT_URL}?sheet=${SHEET_ID}`)
-  .then(res => res.json())
-  .then(data => {
-    renderTabla(data);
-  })
-  .catch(err => {
-    document.getElementById("tablaDenuncias").innerHTML =
-      "<p style='color:#f55;'>Error al cargar denuncias. Compruebe el script/Sheet.</p>";
+  document.addEventListener("DOMContentLoaded", () => {
+    cargarResumen();
+    cargarDenuncias();
   });
 
-// Renderizar tabla
-function renderTabla(items) {
-  let html = `
-    <table>
-      <thead>
-        <tr>
-          <th>Fecha</th><th>Hora</th><th>Placa</th>
-          <th>Tipo</th><th>Problema</th><th>Ubicación</th>
-          <th>Contacto</th><th>Estado</th><th>Acción</th>
-        </tr>
-      </thead><tbody>`;
-  
-  items.forEach((item, idx) => {
-    html += `
-      <tr data-placa="${item.placa}">
-        <td>${item.fecha}</td>
-        <td>${item.hora}</td>
-        <td>${item.placa}</td>
-        <td>${item.tipo}</td>
-        <td>${item.problema}</td>
-        <td>${item.ubicacion}</td>
-        <td>${item.contacto}</td>
-        <td id="estado-${idx}">${item.estado}</td>
-        <td><button class="btn-atendida" onclick="marcarAtendida(${idx})">Atendida</button></td>
-      </tr>`;
-  });
+  // ===============================
+  //  RESUMEN DEL DÍA
+  // ===============================
+  function guardarResumen(){
+    const texto = document.getElementById("resumen").value;
+    if(!texto.trim()){
+      alert("Debe escribir un resumen.");
+      return;
+    }
 
-  html += "</tbody></table>";
+    const data = {
+      fecha: new Date().toLocaleString("es-GT"),
+      resumen: texto.trim()
+    };
 
-  document.getElementById("tablaDenuncias").innerHTML = html;
-}
+    localStorage.setItem("resumen_dia", JSON.stringify(data));
+    mostrar("Resumen guardado ✔");
+    mostrarResumenGuardado();
+  }
 
-// Marcar como atendida (solo visual)
-function marcarAtendida(i) {
-  document.getElementById("estado-" + i).innerText = "Atendida";
-}
+  function cargarResumen(){
+    mostrarResumenGuardado();
+  }
 
-// Filtrar por placa
-function filtrarTabla(){
-  const filtro = document.getElementById("buscador").value.toUpperCase();
-  const filas = document.querySelectorAll("#tablaDenuncias table tbody tr");
-  
-  filas.forEach(f => {
-    const placa = f.getAttribute("data-placa").toUpperCase();
-    f.style.display = placa.includes(filtro) ? "" : "none";
-  });
-}
+  function mostrarResumenGuardado(){
+    const div = document.getElementById("resumenGuardado");
+    const guardado = localStorage.getItem("resumen_dia");
+    if(!guardado){
+      div.innerText = "No hay resumen almacenado todavía.";
+      return;
+    }
+    try {
+      const data = JSON.parse(guardado);
+      div.innerText = "Último resumen (" + data.fecha + "): " + data.resumen;
+    } catch(e){
+      div.innerText = "No se pudo leer el resumen almacenado.";
+    }
+  }
+
+  // ===============================
+  //  OPERATIVOS (localStorage)
+  // ===============================
+  function guardarOperativo(){
+    let fecha = document.getElementById("op_fecha").value;
+    let tipo = document.getElementById("op_tipo").value;
+    let unidades = document.getElementById("op_unidades").value;
+    let obs = document.getElementById("op_obs").value;
+
+    if(!fecha || !obs.trim()){
+      alert("Complete los datos del operativo.");
+      return;
+    }
+
+    const nuevo = { fecha, tipo, unidades, obs };
+    let lista = JSON.parse(localStorage.getItem("operativos") || "[]");
+    lista.push(nuevo);
+    localStorage.setItem("operativos", JSON.stringify(lista));
+
+    mostrar("Operativo registrado ✔");
+    document.getElementById("op_fecha").value = "";
+    document.getElementById("op_unidades").value = "";
+    document.getElementById("op_obs").value = "";
+  }
+
+  // ===============================
+  //  CARGAR DENUNCIAS DESDE SHEET
+  // ===============================
+  function cargarDenuncias(){
+    const tbody = document.getElementById("tbodyDenuncias");
+    tbody.innerHTML = `
+      <tr><td colspan="10" style="text-align:center; color:#aaa;">
+      Cargando denuncias…
+      </td></tr>`;
+
+    fetch(SCRIPT_URL + "?accion=leer")
+      .then(r => r.json())
+      .then(datos => {
+        window._denuncias = datos || [];
+        pintarTablaDenuncias();
+      })
+      .catch(err => {
+        console.error(err);
+        tbody.innerHTML = `
+          <tr><td colspan="10" style="text-align:center; color:#ff8080;">
+          Error al cargar denuncias.
+          </td></tr>`;
+      });
+  }
+
+  function pintarTablaDenuncias(){
+    const tbody = document.getElementById("tbodyDenuncias");
+    tbody.innerHTML = "";
+
+    if(!window._denuncias.length){
+      tbody.innerHTML = `
+        <tr><td colspan="10" style="text-align:center; color:#aaa;">
+        No hay denuncias registradas todavía.
+        </td></tr>`;
+      return;
+    }
+
+    window._denuncias.forEach((d, idx) => {
+      const tr = document.createElement("tr");
+
+      const estado = (d.estado || "").toString().toLowerCase();
+      let badgeClasse = "badge-estado ";
+      if(estado === "resuelto" || estado === "resuelta"){
+        badgeClasse += "badge-resuelto";
+      } else {
+        badgeClasse += "badge-pendiente";
+      }
+
+      tr.innerHTML = `
+        <td>${idx + 1}</td>
+        <td>${d.fecha || ""}</td>
+        <td>${d.hora || ""}</td>
+        <td>${d.placa || ""}</td>
+        <td>${d.tipo_licencia || d.tipo || ""}</td>
+        <td>${d.problema || ""}</td>
+        <td>${d.ubicacion || ""}</td>
+        <td>${d.contacto || ""}</td>
+        <td><span class="${badgeClasse}">${d.estado || "Pendiente"}</span></td>
+        <td>
+          <button class="btn-borrar" onclick="borrarDenuncia(${idx})">
+            Eliminar
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ===============================
+  //  REGISTRAR DENUNCIA MANUAL
+  // ===============================
+  function guardarDenuncia(){
+    let placa = document.getElementById("den_placa").value.trim();
+    let tipo = document.getElementById("den_tipo").value.trim();
+    let problema = document.getElementById("den_problema").value.trim();
+    let ubicacion = document.getElementById("den_ubicacion").value.trim();
+    let contacto = document.getElementById("den_contacto").value.trim();
+
+    if(!placa || !problema){
+      alert("Debe ingresar placa y problema.");
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append("placa", placa);
+    fd.append("tipo", tipo);
+    fd.append("problema", problema);
+    fd.append("ubicacion", ubicacion);
+    fd.append("contacto", contacto);
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      body: fd
+    })
+    .then(r => r.text())
+    .then(res => {
+      mostrar("Denuncia registrada y enviada ✔");
+      document.getElementById("den_placa").value = "";
+      document.getElementById("den_problema").value = "";
+      document.getElementById("den_ubicacion").value = "";
+      document.getElementById("den_contacto").value = "";
+      cargarDenuncias();
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Error al enviar la denuncia.");
+    });
+  }
+
+  // ===============================
+  //  BORRAR DENUNCIA (Sheet + panel)
+  // ===============================
+  function borrarDenuncia(index){
+    if(!confirm("¿Eliminar esta denuncia definitivamente?")) return;
+
+    fetch(SCRIPT_URL + "?accion=borrar&fila=" + index)
+      .then(r => r.text())
+      .then(res => {
+        mostrar("Denuncia eliminada ✔");
+        cargarDenuncias();
+      })
+      .catch(err => {
+        console.error(err);
+        alert("No se pudo eliminar la denuncia.");
+      });
+  }
+
+  // ===============================
+  //  EXPORTAR A EXCEL
+  // ===============================
+  function exportarTodo(){
+    if(!window._denuncias.length){
+      alert("No hay denuncias para exportar.");
+      return;
+    }
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(window._denuncias);
+    XLSX.utils.book_append_sheet(wb, ws, "Denuncias");
+    XLSX.writeFile(wb, "denuncias_todas.xlsx");
+  }
+
+  function exportarSemana(){
+    if(!window._denuncias.length){
+      alert("No hay denuncias para exportar.");
+      return;
+    }
+    const hoy = new Date();
+    const hace7 = new Date(hoy.getTime() - 7*24*60*60*1000);
+
+    const filtrado = window._denuncias.filter(d => {
+      if(!d.fecha) return false;
+      const f = new Date(d.fecha);
+      return f >= hace7 && f <= hoy;
+    });
+
+    if(!filtrado.length){
+      alert("No hay denuncias en la última semana.");
+      return;
+    }
+
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(filtrado);
+    XLSX.utils.book_append_sheet(wb, ws, "Semana");
+    XLSX.writeFile(wb, "denuncias_semana.xlsx");
+  }
+
+  function exportarMes(){
+    if(!window._denuncias.length){
+      alert("No hay denuncias para exportar.");
+      return;
+    }
+    const hoy = new Date();
+    const mes = hoy.getMonth();
+    const anio = hoy.getFullYear();
+
+    const filtrado = window._denuncias.filter(d => {
+      if(!d.fecha) return false;
+      const f = new Date(d.fecha);
+      return f.getMonth() === mes && f.getFullYear() === anio;
+    });
+
+    if(!filtrado.length){
+      alert("No hay denuncias en el mes actual.");
+      return;
+    }
+
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(filtrado);
+    XLSX.utils.book_append_sheet(wb, ws, "Mes");
+    XLSX.writeFile(wb, "denuncias_mes.xlsx");
+  }
+
+  // ===============================
+  //  UTILIDAD DE MENSAJE
+  // ===============================
+  function mostrar(texto){
+    const div = document.getElementById("salida");
+    div.innerText = texto;
+    setTimeout(() => {
+      if(div.innerText === texto){
+        div.innerText = "";
+      }
+    }, 4000);
+  }
 </script>
 
 </body>
