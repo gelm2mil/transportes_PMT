@@ -84,10 +84,10 @@
 
     <h2 style="color:#00ffc8; margin-top:25px;">Formulario de denuncia</h2>
 
-    <p style="color:#cfcfcf;">
-        Utilice este formulario para reportar problemas con unidades de transporte público, especial,
-        urbano o mototaxis operando dentro del municipio.  
-        La información será enviada al sistema interno de la Unidad de Transportes.
+    <p style="color:#00ff7b;">
+        Utilice este formulario para reportar problemas con unidades de transporte público en general
+        urbano o mototaxis, taxi, recolectores de basura, fleteros o escolares que este operando dentro del municipio.  
+        La información será enviada al sistema interno de la Unidad de Transportes y quedara de manera anonima en su totalidad.
     </p>
 
     <!-- FORMULARIO -->
@@ -99,10 +99,13 @@
         <select name="tipo" id="tipo" class="campo" required>
             <option value="">Tipo de transporte</option>
             <option>Urbano</option>
-            <option>Colectivo</option>
-            <option>Especial</option>
+            <option>escolar</option>
+          <option>fleteros</option>
+            <option>cualquier servicio</option>
             <option>Mototaxi</option>
-            <option>Particular (mal uso de transporte)</option>
+          <option>mal piloto</option>
+          <option>Particular (mal uso de transporte)</option>
+          <option>otros</option>
         </select>
 
         <textarea name="problema" id="problema" class="campo" rows="3"
@@ -119,7 +122,7 @@
         <input type="text" name="contacto" class="campo"
                placeholder="Número de contacto (opcional)">
 
-        <!-- FOTO OPCIONAL (no se envía a Sheets por ahora) -->
+        <!-- FOTO OPCIONAL (su denuncia se procesara en las siguientes 24 hrs) -->
         <label style="color:#00ffc8; font-size:14px;">Adjuntar foto (opcional):</label>
         <input type="file" id="foto" accept="image/*" class="campo">
 
@@ -172,3 +175,4 @@ function enviarDenuncia(event){
 
 </body>
 </html>
+
