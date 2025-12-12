@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -85,34 +85,46 @@
     <h2 style="color:#00ffc8; margin-top:25px;">Formulario de denuncia</h2>
 
     <p style="color:#cfcfcf;">
-        Utilice este formulario para reportar problemas con unidades de transporte público, especial, urbano o mototaxis operando dentro del municipio.
+        Utilice este formulario para reportar problemas con unidades de transporte público, especial,
+        urbano o mototaxis operando dentro del municipio.  
         La información será enviada al sistema interno de la Unidad de Transportes.
     </p>
 
     <!-- FORMULARIO -->
-    <input type="text" id="placa" class="campo" placeholder="Placa o identificación del vehículo">
-    
-    <select id="tipo" class="campo">
-        <option value="">Tipo de transporte</option>
-        <option>Urbano</option>
-        <option>Colectivo</option>
-        <option>Especial</option>
-        <option>Mototaxi</option>
-        <option>Particular (mal uso de transporte)</option>
-    </select>
+    <form id="formDenuncia" onsubmit="enviarDenuncia(event)">
 
-    <textarea id="problema" class="campo" rows="3" placeholder="Descripción del problema observado"></textarea>
+        <input type="text" name="placa" id="placa" class="campo"
+               placeholder="Placa o identificación del vehículo" required>
 
-    <input type="text" id="lugar" class="campo" placeholder="Lugar / zona / sector / punto">
-    
-    <input type="datetime-local" id="fecha" class="campo">
+        <select name="tipo" id="tipo" class="campo" required>
+            <option value="">Tipo de transporte</option>
+            <option>Urbano</option>
+            <option>Colectivo</option>
+            <option>Especial</option>
+            <option>Mototaxi</option>
+            <option>Particular (mal uso de transporte)</option>
+        </select>
 
-    <textarea id="detalle" class="campo" rows="3" placeholder="Testimonio o detalles adicionales (opcional)"></textarea>
+        <textarea name="problema" id="problema" class="campo" rows="3"
+                  placeholder="Descripción del problema observado" required></textarea>
 
-    <label style="color:#00ffc8; font-size:14px;">Adjuntar foto (opcional):</label>
-    <input type="file" id="foto" accept="image/*" class="campo">
+        <input type="text" name="ubicacion" id="lugar" class="campo"
+               placeholder="Lugar / zona / sector / punto" required>
 
-    <button id="btnEnviar">Enviar denuncia</button>
+        <input type="datetime-local" name="fecha_hora" id="fecha" class="campo" required>
+
+        <textarea name="detalle" id="detalle" class="campo" rows="3"
+                  placeholder="Testimonio o detalles adicionales (opcional)"></textarea>
+
+        <input type="text" name="contacto" class="campo"
+               placeholder="Número de contacto (opcional)">
+
+        <!-- FOTO OPCIONAL (no se envía a Sheets por ahora) -->
+        <label style="color:#00ffc8; font-size:14px;">Adjuntar foto (opcional):</label>
+        <input type="file" id="foto" accept="image/*" class="campo">
+
+        <button id="btnEnviar" type="submit">Enviar denuncia</button>
+    </form>
 
     <div id="confirmacion">
         ✔ Su denuncia fue registrada correctamente.<br>
@@ -134,22 +146,28 @@
 </div>
 
 <script>
-// Muestra mensaje sin recargar
-document.getElementById("btnEnviar").onclick = function () {
-    document.getElementById("confirmacion").style.display = "block";
-
-    // Limpia todo
-    document.getElementById("placa").value = "";
-    document.getElementById("tipo").value = "";
-    document.getElementById("problema").value = "";
-    document.getElementById("lugar").value = "";
-    document.getElementById("fecha").value = "";
-    document.getElementById("detalle").value = "";
-    document.getElementById("foto").value = "";
-};
-
 document.getElementById("pie-fecha").innerText =
     new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
+
+function enviarDenuncia(event){
+    event.preventDefault();
+
+    const form = document.getElementById("formDenuncia");
+    const datos = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbypncaQPe-4i8md4SqTrmxdXclW6bb-6RtJaL8Sc8RnM1wFBJHnwqHGG4f5WKBdEDx_fw/exec", {
+        method: "POST",
+        body: datos
+    })
+    .then(res => res.text())
+    .then(txt => {
+        document.getElementById("confirmacion").style.display = "block";
+        form.reset();
+    })
+    .catch(err => {
+        alert("❌ Error al enviar denuncia:\n" + err);
+    });
+}
 </script>
 
 </body>
