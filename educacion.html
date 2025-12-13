@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -42,18 +42,19 @@
   text-shadow: 0 0 6px #00ffff;
 }
 
-.video-box {
+/* VIDEOS EN GRID */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
   margin-top: 15px;
-  display: flex;
-  justify-content: center;
 }
 
-.video-box iframe {
+.videos-grid iframe {
   width: 100%;
-  max-width: 600px;
-  height: 340px;
+  height: 180px;
   border-radius: 12px;
-  box-shadow: 0 0 18px rgba(0,255,255,0.4);
+  box-shadow: 0 0 16px rgba(0,255,255,0.4);
   border: 1px solid rgba(0,255,255,0.3);
 }
 
@@ -125,7 +126,31 @@
         <div class="card-neon"><strong>6. Documentación:</strong> Título de operación vigente y stickers visibles.</div>
     </div>
 
-    <!-- Sección 2 -->
+    <!-- NUEVA SECCIÓN EDUCACIÓN VIAL -->
+    <div class="seccion">
+        <h3>Unidad de Educación Vial – PMT Chimaltenango</h3>
+
+        <p>
+            La Unidad de Educación Vial de la Policía Municipal de Tránsito de Chimaltenango es la encargada
+            de la parte técnica de la dependencia. Nuestra misión es dar a conocer las leyes y reglas vigentes,
+            así como la Ley y el Reglamento de Tránsito, mediante el uso de métodos y técnicas de enseñanza–aprendizaje.
+        </p>
+
+        <p>
+            Nuestro trabajo consiste en instruir a los vecinos y a la población del municipio sobre la
+            responsabilidad y el respeto vial, dirigidos a peatones, conductores y pasajeros dentro de la vía pública.
+        </p>
+
+        <p>
+            Asimismo, trabajamos con la población estudiantil para inculcar una cultura vial basada en el respeto,
+            la calidad y la debida disposición, sabiendo que son el presente y el futuro de nuestra sociedad.
+            Estas acciones se realizan a través de charlas, talleres, capacitaciones y actividades educativas,
+            dirigidas tanto a estudiantes como a la población en general, dando a conocer las infracciones
+            existentes y las sanciones que conllevan estas acciones.
+        </p>
+    </div>
+
+    <!-- Sección Buenas Prácticas -->
     <div class="seccion">
         <h3>Buenas prácticas para mototaxis</h3>
 
@@ -138,32 +163,27 @@
         </ul>
     </div>
 
-    <!-- Sección 3 -->
+    <!-- VIDEOS -->
     <div class="seccion">
         <h3>Videos educativos recomendados</h3>
         <p>Contenido para reforzar conocimientos sobre movilidad segura.</p>
 
-        <div class="video-box">
+        <div class="videos-grid">
             <iframe src="https://www.youtube.com/embed/0tKOxyQSLq0" allowfullscreen></iframe>
-        </div>
-
-        <div class="video-box">
             <iframe src="https://www.youtube.com/embed/Avl5SEsSsr4" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- Sección 4 -->
+    <!-- DESCARGAS -->
     <div class="seccion">
         <h3>Material educativo descargable</h3>
         <p>Aquí podrás subir reglamentos, instructivos o guías oficiales cuando las tengas.</p>
-
         <a href="#" class="descarga">📘 Descargar Guía (próximamente)</a>
     </div>
 
-    <!-- Sección 5 -->
+    <!-- ADVERTENCIAS -->
     <div class="seccion">
         <h3>Advertencias importantes</h3>
-
         <div class="card-neon"><strong>No conducir bajo efectos de alcohol o estupefacientes.</strong></div>
         <div class="card-neon"><strong>No permitir menores conduciendo mototaxis.</strong></div>
         <div class="card-neon"><strong>Cuidar la vida de pasajeros es la prioridad absoluta.</strong></div>
