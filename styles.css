@@ -314,26 +314,36 @@ tr:nth-child(even) td {
     max-width: 280px;
   }
 }
-/* ================= SEMÁFORO HORIZONTAL PMT ================= */
+/* ================= CONTENEDOR TEXTO + SEMÁFORO ================= */
+.texto-plataforma{
+  position:relative;
+  margin-top:10px;
+  text-align:center;
+}
+
+/* ================= SEMÁFORO HORIZONTAL FIJO ================= */
 .semaforo-horizontal{
-  margin:12px auto 0;
+  position:absolute;
+  left:50%;
+  bottom:-22px; /* controla distancia sin empujar nada */
+  transform:translateX(-50%);
   display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  padding:6px 12px;
+  gap:8px;
+  padding:5px 10px;
   border-radius:14px;
   background:#050b14;
   border:1px solid rgba(0,255,136,.45);
   box-shadow:
-    0 0 14px rgba(0,255,136,.45),
-    inset 0 0 10px rgba(0,0,0,.85);
+    0 0 12px rgba(0,255,136,.45),
+    inset 0 0 8px rgba(0,0,0,.85);
+  pointer-events:none;
+  z-index:5;
 }
 
 /* luces */
 .semaforo-horizontal .luz{
-  width:16px;
-  height:16px;
+  width:14px;
+  height:14px;
   border-radius:50%;
   opacity:.25;
 }
@@ -352,11 +362,11 @@ tr:nth-child(even) td {
   animation:verdeH 10s infinite;
 }
 
-/* animaciones más lentas (institucional) */
+/* animaciones institucionales */
 @keyframes rojoH{
   0%,45%{
     opacity:1;
-    box-shadow:0 0 14px #ff0033;
+    box-shadow:0 0 12px #ff0033;
   }
   46%,100%{opacity:.25}
 }
@@ -365,7 +375,7 @@ tr:nth-child(even) td {
   0%,45%{opacity:.25}
   46%,60%{
     opacity:1;
-    box-shadow:0 0 14px #ffd000;
+    box-shadow:0 0 12px #ffd000;
   }
   61%,100%{opacity:.25}
 }
@@ -374,6 +384,6 @@ tr:nth-child(even) td {
   0%,60%{opacity:.25}
   61%,100%{
     opacity:1;
-    box-shadow:0 0 16px #00ff88;
+    box-shadow:0 0 14px #00ff88;
   }
 }
