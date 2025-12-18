@@ -7,84 +7,149 @@
 <link rel="stylesheet" href="styles.css">
 
 <style>
-.seccion {
-  margin-top: 35px;
-  padding: 20px;
-  border-radius: 14px;
-  background: rgba(0,255,255,0.04);
-  border: 1px solid rgba(0,255,200,0.3);
-  box-shadow: 0 0 18px rgba(0,255,255,0.15);
+/* ================= SECCIONES ================= */
+.seccion{
+  margin-top:35px;
+  padding:20px;
+  border-radius:14px;
+  background:rgba(0,255,255,0.04);
+  border:1px solid rgba(0,255,200,0.3);
+  box-shadow:0 0 18px rgba(0,255,255,0.15);
+}
+.seccion h3{
+  color:#00ffc8;
+  text-shadow:0 0 6px #00ffff;
+  margin-bottom:12px;
+}
+.seccion p, .seccion li{
+  color:#d6d6d6;
+  line-height:1.5em;
+  font-size:15px;
 }
 
-.seccion h3 {
-  color: #00ffc8;
-  text-shadow: 0 0 6px #00ffff;
-  margin-bottom: 12px;
+/* ================= TARJETAS ================= */
+.card-neon{
+  padding:15px;
+  margin-top:12px;
+  border-radius:14px;
+  border:1px solid rgba(0,255,255,0.3);
+  background:rgba(0,0,0,0.55);
+  box-shadow:0 0 14px rgba(0,255,255,0.2);
+}
+.card-neon strong{
+  color:#00ffc8;
+  text-shadow:0 0 6px #00ffff;
 }
 
-.seccion p, li {
-  color: #d6d6d6;
-  line-height: 1.5em;
-  font-size: 15px;
+/* ================= VIDEOS ================= */
+.videos-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  margin-top:15px;
+}
+.videos-grid iframe{
+  width:100%;
+  height:180px;
+  border-radius:12px;
+  box-shadow:0 0 16px rgba(0,255,255,0.4);
+  border:1px solid rgba(0,255,255,0.3);
 }
 
-.card-neon {
-  padding: 15px;
-  margin-top: 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(0,255,255,0.3);
-  background: rgba(0,0,0,0.55);
-  box-shadow: 0 0 14px rgba(0,255,255,0.2);
+/* ================= BOTONES ================= */
+.btn-volver{
+  margin:22px auto;
+  display:inline-block;
+  padding:10px 24px;
+  border-radius:999px;
+  border:1px solid #00ffc8;
+  color:#a5ffe5;
+  background:transparent;
+  text-shadow:0 0 6px #00ffff;
+  box-shadow:0 0 14px rgba(0,255,255,0.5);
+}
+.btn-volver:hover{ background:rgba(0,255,255,0.2); }
+
+.descarga{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 22px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 0,#00ffff,#5f00ff);
+  color:#000;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 0 18px rgba(0,255,255,0.6);
 }
 
-.card-neon strong {
-  color: #00ffc8;
-  text-shadow: 0 0 6px #00ffff;
+/* ================= FRANJA EDUCATIVA ================= */
+.franja-educativa{
+  margin-top:28px;
+  padding:18px;
+  border-radius:16px;
+  border:1px solid rgba(0,255,200,.35);
+  box-shadow:0 0 18px rgba(0,255,255,.2);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
 }
 
-/* VIDEOS EN GRID */
-.videos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-  margin-top: 15px;
+.lineas{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
 }
+.linea{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:#cffff4;
+}
+.color{
+  width:36px;
+  height:6px;
+  border-radius:6px;
+  box-shadow:0 0 8px currentColor;
+}
+.rojo{background:#ff004c;}
+.amarillo{background:#ffd000;}
+.blanco{background:#ffffff;}
+.azul{background:#00c8ff;}
 
-.videos-grid iframe {
-  width: 100%;
-  height: 180px;
-  border-radius: 12px;
-  box-shadow: 0 0 16px rgba(0,255,255,0.4);
-  border: 1px solid rgba(0,255,255,0.3);
+.semaforo{
+  width:54px;
+  padding:8px;
+  border-radius:10px;
+  background:#000;
+  border:1px solid rgba(0,255,200,.4);
+  box-shadow:0 0 12px rgba(0,255,255,.3);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
 }
+.luz{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  opacity:.35;
+}
+.luz.roja{background:red; animation:rojo 6s infinite;}
+.luz.amarilla{background:yellow; animation:amarillo 6s infinite;}
+.luz.verde{background:#00ff88; animation:verde 6s infinite;}
 
-.btn-volver {
-  margin-bottom: 20px;
-  display: inline-block;
-  padding: 10px 22px;
-  border-radius: 999px;
-  border: 1px solid #00ffc8;
-  color: #a5ffe5;
-  background: transparent;
-  cursor: pointer;
-  text-shadow: 0 0 6px #00ffff;
-  box-shadow: 0 0 14px rgba(0,255,255,0.5);
+@keyframes rojo{
+  0%,30%{opacity:1}31%,100%{opacity:.2}
 }
-.btn-volver:hover { background: rgba(0,255,255,0.2); }
-
-.descarga {
-  margin-top: 10px;
-  display: inline-block;
-  padding: 10px 22px;
-  border-radius: 999px;
-  color: #000;
-  background: radial-gradient(circle at 30% 0, #00ffff, #5f00ff);
-  font-weight: bold;
-  text-decoration: none;
-  text-shadow: 0 0 4px #00ffff;
-  box-shadow: 0 0 18px rgba(0,255,255,0.6);
+@keyframes amarillo{
+  0%,30%{opacity:.2}31%,50%{opacity:1}51%,100%{opacity:.2}
 }
-.descarga:hover { filter: brightness(1.1); }
+@keyframes verde{
+  0%,50%{opacity:.2}51%,100%{opacity:1}
+}
 </style>
 </head>
 
@@ -92,115 +157,101 @@
 
 <div class="contenedor">
 
-    <!-- HEADER -->
-    <div class="header-top">
-        <div class="logo-box">
-            <img src="icons/icon-192.png" alt="PMT">
-        </div>
+<!-- ================= HEADER ================= -->
+<div class="header-top">
+  <div class="logo-box"><img src="icons/icon-192.png" alt="PMT"></div>
 
-        <div class="titulos">
-            <div class="titulos-linea1">EDUCACIÓN VIAL</div>
-            <div class="titulos-linea2">Para transporte colectivo, especial y mototaxis</div>
-            <div class="titulos-linea3">Unidad de Transportes – PMT Chimaltenango</div>
-        </div>
+  <div class="titulos">
+    <div class="titulos-linea1">EDUCACIÓN VIAL</div>
+    <div class="titulos-linea2">Para transporte colectivo, especial y mototaxis</div>
+    <div class="titulos-linea3">Unidad de Transportes – PMT Chimaltenango</div>
+  </div>
 
-        <div class="logo-box">
-            <img src="icons/icon-512.png" alt="GELM">
-        </div>
-    </div>
+  <div class="logo-box"><img src="icons/icon-512.png" alt="GELM"></div>
+</div>
 
-    <!-- VOLVER -->
-    <div style="text-align:center;">
-        <a href="index.html" class="btn-volver">⬅ Volver a inicio</a>
-    </div>
+<!-- ================= FRANJA EDUCATIVA ================= -->
+<div class="franja-educativa">
+  <div class="lineas">
+    <div class="linea"><span class="color rojo"></span>No estacionar</div>
+    <div class="linea"><span class="color amarillo"></span>Parada momentánea</div>
+    <div class="linea"><span class="color blanco"></span>Parqueo motos</div>
+    <div class="linea"><span class="color azul"></span>Carga / transporte</div>
+  </div>
 
-    <!-- Sección 1 -->
-    <div class="seccion">
-        <h3>Reglas básicas para pilotos de transporte</h3>
+  <div class="semaforo">
+    <div class="luz roja"></div>
+    <div class="luz amarilla"></div>
+    <div class="luz verde"></div>
+    <div style="font-size:11px;color:#7fffe0;margin-top:4px;">Respete señales</div>
+  </div>
+</div>
 
-        <div class="card-neon"><strong>1. Licencia vigente:</strong> El piloto debe portar licencia A, B, C o M según el tipo de unidad.</div>
-        <div class="card-neon"><strong>2. Ruta autorizada:</strong> Ningún vehículo debe operar fuera de su ruta asignada.</div>
-        <div class="card-neon"><strong>3. Tarifa correcta:</strong> Respetar las tarifas oficiales establecidas por Concejo Municipal.</div>
-        <div class="card-neon"><strong>4. Seguridad:</strong> No usar celular mientras conduce, mantener distancia y verificar frenos.</div>
-        <div class="card-neon"><strong>5. Respeto a usuarios:</strong> Trato digno y cordial a pasajeros y peatones.</div>
-        <div class="card-neon"><strong>6. Documentación:</strong> Título de operación vigente y stickers visibles.</div>
-    </div>
+<div style="text-align:center;">
+  <a href="index.html" class="btn-volver">⬅ Volver a inicio</a>
+</div>
 
-    <!-- NUEVA SECCIÓN EDUCACIÓN VIAL -->
-    <div class="seccion">
-        <h3>Unidad de Educación Vial – PMT Chimaltenango</h3>
+<!-- ================= CONTENIDO COMPLETO ================= -->
 
-        <p>
-            La Unidad de Educación Vial de la Policía Municipal de Tránsito de Chimaltenango es la encargada
-            de la parte técnica de la dependencia. Nuestra misión es dar a conocer las leyes y reglas vigentes,
-            así como la Ley y el Reglamento de Tránsito, mediante el uso de métodos y técnicas de enseñanza–aprendizaje.
-        </p>
+<div class="seccion">
+  <h3>Reglas básicas para pilotos de transporte</h3>
+  <div class="card-neon"><strong>1. Licencia vigente:</strong> portar licencia A, B, C o M.</div>
+  <div class="card-neon"><strong>2. Ruta autorizada:</strong> no operar fuera de su ruta.</div>
+  <div class="card-neon"><strong>3. Tarifa correcta:</strong> respetar tarifas oficiales.</div>
+  <div class="card-neon"><strong>4. Seguridad:</strong> no usar celular, verificar frenos.</div>
+  <div class="card-neon"><strong>5. Respeto:</strong> trato digno a usuarios.</div>
+  <div class="card-neon"><strong>6. Documentación:</strong> título y stickers visibles.</div>
+</div>
 
-        <p>
-            Nuestro trabajo consiste en instruir a los vecinos y a la población del municipio sobre la
-            responsabilidad y el respeto vial, dirigidos a peatones, conductores y pasajeros dentro de la vía pública.
-        </p>
+<div class="seccion">
+  <h3>Unidad de Educación Vial – PMT Chimaltenango</h3>
+  <p>La Unidad de Educación Vial es la encargada de la formación técnica...</p>
+  <p>Instruimos a peatones, conductores y pasajeros...</p>
+  <p>Trabajamos con población estudiantil para crear cultura vial...</p>
+</div>
 
-        <p>
-            Asimismo, trabajamos con la población estudiantil para inculcar una cultura vial basada en el respeto,
-            la calidad y la debida disposición, sabiendo que son el presente y el futuro de nuestra sociedad.
-            Estas acciones se realizan a través de charlas, talleres, capacitaciones y actividades educativas,
-            dirigidas tanto a estudiantes como a la población en general, dando a conocer las infracciones
-            existentes y las sanciones que conllevan estas acciones.
-        </p>
-    </div>
+<div class="seccion">
+  <h3>Buenas prácticas para mototaxis</h3>
+  <ul>
+    <li>No exceder pasajeros</li>
+    <li>Uso de casco</li>
+    <li>Revisión mecánica</li>
+    <li>No maniobras bruscas</li>
+    <li>Respeto peatonal</li>
+  </ul>
+</div>
 
-    <!-- Sección Buenas Prácticas -->
-    <div class="seccion">
-        <h3>Buenas prácticas para mototaxis</h3>
+<div class="seccion">
+  <h3>Videos educativos recomendados</h3>
+  <div class="videos-grid">
+    <iframe src="https://www.youtube.com/embed/0tKOxyQSLq0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/Avl5SEsSsr4" allowfullscreen></iframe>
+  </div>
+</div>
 
-        <ul>
-            <li>No exceder el número de pasajeros.</li>
-            <li>Usar casco (piloto y acompañante si aplica).</li>
-            <li>Revisar luces, frenos y llantas antes de iniciar labores.</li>
-            <li>No realizar carreras o maniobras bruscas.</li>
-            <li>Respetar prioridad peatonal.</li>
-        </ul>
-    </div>
+<div class="seccion">
+  <h3>Material educativo descargable</h3>
+  <a href="#" class="descarga">📘 Descargar Guía (próximamente)</a>
+</div>
 
-    <!-- VIDEOS -->
-    <div class="seccion">
-        <h3>Videos educativos recomendados</h3>
-        <p>Contenido para reforzar conocimientos sobre movilidad segura.</p>
+<div class="seccion">
+  <h3>Advertencias importantes</h3>
+  <div class="card-neon">No conducir bajo efectos de alcohol.</div>
+  <div class="card-neon">No permitir menores conduciendo.</div>
+  <div class="card-neon">La vida es prioridad.</div>
+</div>
 
-        <div class="videos-grid">
-            <iframe src="https://www.youtube.com/embed/0tKOxyQSLq0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/Avl5SEsSsr4" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <!-- DESCARGAS -->
-    <div class="seccion">
-        <h3>Material educativo descargable</h3>
-        <p>Aquí podrás subir reglamentos, instructivos o guías oficiales cuando las tengas.</p>
-        <a href="#" class="descarga">📘 Descargar Guía (próximamente)</a>
-    </div>
-
-    <!-- ADVERTENCIAS -->
-    <div class="seccion">
-        <h3>Advertencias importantes</h3>
-        <div class="card-neon"><strong>No conducir bajo efectos de alcohol o estupefacientes.</strong></div>
-        <div class="card-neon"><strong>No permitir menores conduciendo mototaxis.</strong></div>
-        <div class="card-neon"><strong>Cuidar la vida de pasajeros es la prioridad absoluta.</strong></div>
-    </div>
-
-    <!-- PIE -->
-    <div class="pie" style="margin-top: 40px;">
-        2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango<br>
-        Programa oficial de educación vial<br>
-        <div id="pie-fecha"></div>
-    </div>
+<div class="pie">
+  2014 - 2025 | BY GELM | Delegación de Transportes PMT — Chimaltenango<br>
+  Programa oficial de educación vial<br>
+  <div id="pie-fecha"></div>
+</div>
 
 </div>
 
 <script>
 document.getElementById("pie-fecha").innerText =
-    new Date().toLocaleString('es-GT', { dateStyle:'full', timeStyle:'short' });
+  new Date().toLocaleString('es-GT',{dateStyle:'full',timeStyle:'short'});
 </script>
 
 </body>
