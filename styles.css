@@ -389,3 +389,85 @@ tr:nth-child(even) td {
         box-shadow:0 0 16px #00ff88;
     }
 }
+/* ================= FRANJA EDUCATIVA VIAL ================= */
+.franja-vial{
+  margin:18px auto 10px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:18px;
+  flex-wrap:wrap;
+  padding:12px 16px;
+  border-radius:14px;
+  background:rgba(0,0,0,.45);
+  border:1px solid rgba(0,255,200,.35);
+  box-shadow:0 0 18px rgba(0,255,255,.2);
+}
+
+.senal{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color:#bffcff;
+  text-align:center;
+}
+
+/* líneas de colores */
+.linea{
+  width:42px;
+  height:8px;
+  border-radius:6px;
+  box-shadow:0 0 10px currentColor;
+}
+
+.linea.rojo{ background:#ff0033; color:#ff0033; }
+.linea.amarillo{ background:#ffd000; color:#ffd000; }
+.linea.blanco{ background:#ffffff; color:#ffffff; }
+.linea.azul{ background:#00aaff; color:#00aaff; }
+
+/* ================= SEMÁFORO EDUCATIVO ================= */
+.semaforo{
+  padding:6px 10px;
+  border-radius:12px;
+  background:#02050b;
+  border:1px solid rgba(0,255,136,.4);
+  box-shadow:0 0 14px rgba(0,255,136,.4);
+}
+
+.semaforo .luz{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  margin:2px;
+  opacity:.25;
+}
+
+/* animación lenta (educativa) */
+.semaforo .rojo{
+  background:#ff0033;
+  animation:semRojo 12s infinite;
+}
+.semaforo .amarillo{
+  background:#ffd000;
+  animation:semAmarillo 12s infinite;
+}
+.semaforo .verde{
+  background:#00ff88;
+  animation:semVerde 12s infinite;
+}
+
+@keyframes semRojo{
+  0%,45%{opacity:1; box-shadow:0 0 10px #ff0033;}
+  46%,100%{opacity:.25}
+}
+@keyframes semAmarillo{
+  0%,45%{opacity:.25}
+  46%,65%{opacity:1; box-shadow:0 0 10px #ffd000;}
+  66%,100%{opacity:.25}
+}
+@keyframes semVerde{
+  0%,65%{opacity:.25}
+  66%,100%{opacity:1; box-shadow:0 0 12px #00ff88;}
+}
