@@ -314,67 +314,65 @@ tr:nth-child(even) td {
     max-width: 280px;
   }
 }
-/* ================= SEMÁFORO TRANSPORTES PMT ================= */
-.semaforo-big{
-  margin:16px auto 6px;
-  width:26px;
-  height:70px;
-  background:#050b14;
-  border:1px solid rgba(0,255,136,.55);
-  border-radius:8px;
-  padding:5px 4px;
+/* ================= SEMÁFORO HORIZONTAL PMT ================= */
+.semaforo-horizontal{
+  margin:12px auto 0;
   display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  padding:6px 12px;
+  border-radius:14px;
+  background:#050b14;
+  border:1px solid rgba(0,255,136,.45);
   box-shadow:
-    0 0 14px rgba(0,255,136,.55),
+    0 0 14px rgba(0,255,136,.45),
     inset 0 0 10px rgba(0,0,0,.85);
 }
 
-/* LUCES */
-.semaforo-big .luz{
-  width:100%;
+/* luces */
+.semaforo-horizontal .luz{
+  width:16px;
   height:16px;
   border-radius:50%;
   opacity:.25;
-  box-shadow:0 0 6px rgba(0,0,0,.9);
 }
 
-/* COLORES */
-.semaforo-big .rojo{
+/* colores */
+.semaforo-horizontal .rojo{
   background:#ff0033;
-  animation:rojoPMT 9s infinite;
+  animation:rojoH 10s infinite;
 }
-.semaforo-big .amarillo{
+.semaforo-horizontal .amarillo{
   background:#ffd000;
-  animation:amarilloPMT 9s infinite;
+  animation:amarilloH 10s infinite;
 }
-.semaforo-big .verde{
+.semaforo-horizontal .verde{
   background:#00ff88;
-  animation:verdePMT 9s infinite;
+  animation:verdeH 10s infinite;
 }
 
-/* ================= TIEMPOS MÁS REALES ================= */
-@keyframes rojoPMT{
-  0%,40%{
+/* animaciones más lentas (institucional) */
+@keyframes rojoH{
+  0%,45%{
     opacity:1;
     box-shadow:0 0 14px #ff0033;
   }
-  41%,100%{opacity:.25}
+  46%,100%{opacity:.25}
 }
 
-@keyframes amarilloPMT{
-  0%,40%{opacity:.25}
-  41%,55%{
+@keyframes amarilloH{
+  0%,45%{opacity:.25}
+  46%,60%{
     opacity:1;
     box-shadow:0 0 14px #ffd000;
   }
-  56%,100%{opacity:.25}
+  61%,100%{opacity:.25}
 }
 
-@keyframes verdePMT{
-  0%,55%{opacity:.25}
-  56%,100%{
+@keyframes verdeH{
+  0%,60%{opacity:.25}
+  61%,100%{
     opacity:1;
     box-shadow:0 0 16px #00ff88;
   }
