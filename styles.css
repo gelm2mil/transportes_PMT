@@ -314,76 +314,78 @@ tr:nth-child(even) td {
     max-width: 280px;
   }
 }
-/* ================= CONTENEDOR TEXTO + SEMÁFORO ================= */
-.texto-plataforma{
-  position:relative;
-  margin-top:10px;
-  text-align:center;
+/* ================= ESTADO PMT ================= */
+.estado-pmt{
+    margin-top:30px;
+    text-align:center;
+    opacity:.9;
 }
 
-/* ================= SEMÁFORO HORIZONTAL FIJO ================= */
+.estado-label{
+    display:block;
+    margin-bottom:8px;
+    font-size:13px;
+    color:#7fefff;
+    letter-spacing:.5px;
+}
+
+/* ================= SEMÁFORO HORIZONTAL ================= */
 .semaforo-horizontal{
-  position:absolute;
-  left:50%;
-  bottom:-22px; /* controla distancia sin empujar nada */
-  transform:translateX(-50%);
-  display:flex;
-  gap:8px;
-  padding:5px 10px;
-  border-radius:14px;
-  background:#050b14;
-  border:1px solid rgba(0,255,136,.45);
-  box-shadow:
-    0 0 12px rgba(0,255,136,.45),
-    inset 0 0 8px rgba(0,0,0,.85);
-  pointer-events:none;
-  z-index:5;
+    display:inline-flex;
+    gap:10px;
+    padding:6px 14px;
+    border-radius:16px;
+    background:#050b14;
+    border:1px solid rgba(0,255,136,.45);
+    box-shadow:
+        0 0 14px rgba(0,255,136,.45),
+        inset 0 0 10px rgba(0,0,0,.85);
 }
 
 /* luces */
 .semaforo-horizontal .luz{
-  width:14px;
-  height:14px;
-  border-radius:50%;
-  opacity:.25;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    opacity:.25;
 }
 
 /* colores */
 .semaforo-horizontal .rojo{
-  background:#ff0033;
-  animation:rojoH 10s infinite;
+    background:#ff0033;
+    animation:rojoPMT 12s infinite;
 }
 .semaforo-horizontal .amarillo{
-  background:#ffd000;
-  animation:amarilloH 10s infinite;
+    background:#ffd000;
+    animation:amarilloPMT 12s infinite;
 }
 .semaforo-horizontal .verde{
-  background:#00ff88;
-  animation:verdeH 10s infinite;
+    background:#00ff88;
+    animation:verdePMT 12s infinite;
 }
 
-/* animaciones institucionales */
-@keyframes rojoH{
-  0%,45%{
-    opacity:1;
-    box-shadow:0 0 12px #ff0033;
-  }
-  46%,100%{opacity:.25}
+/* animaciones lentas y sobrias */
+@keyframes rojoPMT{
+    0%,45%{
+        opacity:1;
+        box-shadow:0 0 14px #ff0033;
+    }
+    46%,100%{opacity:.25}
 }
 
-@keyframes amarilloH{
-  0%,45%{opacity:.25}
-  46%,60%{
-    opacity:1;
-    box-shadow:0 0 12px #ffd000;
-  }
-  61%,100%{opacity:.25}
+@keyframes amarilloPMT{
+    0%,45%{opacity:.25}
+    46%,60%{
+        opacity:1;
+        box-shadow:0 0 14px #ffd000;
+    }
+    61%,100%{opacity:.25}
 }
 
-@keyframes verdeH{
-  0%,60%{opacity:.25}
-  61%,100%{
-    opacity:1;
-    box-shadow:0 0 14px #00ff88;
-  }
+@keyframes verdePMT{
+    0%,60%{opacity:.25}
+    61%,100%{
+        opacity:1;
+        box-shadow:0 0 16px #00ff88;
+    }
 }
