@@ -23,16 +23,8 @@
             <div class="titulos-linea1">POLICÍA MUNICIPAL DE TRÁNSITO – CHIMALTENANGO</div>
             <div class="titulos-linea2">UNIDAD DE TRANSPORTES</div>
             <div class="titulos-linea3">Control • Supervisión • Regulación • Ordenamiento Vial</div>
-            <div class="texto-plataforma">
-  <p>Plataforma oficial de consulta y publicación operativa</p>
-
-  <div class="semaforo-horizontal">
-    <span class="luz rojo"></span>
-    <span class="luz amarillo"></span>
-    <span class="luz verde"></span>
-  </div>
-</div>
-
+            <div class="titulos-linea4">Plataforma oficial de consulta y publicación operativa</div>
+        </div>
 
         <div class="logo-box">
             <img src="icons/icon-512.png" alt="GELM">
@@ -57,7 +49,9 @@
     <!-- ========================= -->
     <!-- ESTADÍSTICAS PÚBLICAS     -->
     <!-- ========================= -->
-    <h2 style="color:#00ffc8; text-align:center; margin-top:25px;">Panel Público — Datos Generales</h2>
+    <h2 style="color:#00ffc8; text-align:center; margin-top:25px;">
+        Panel Público — Datos Generales
+    </h2>
 
     <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:15px;">
 
@@ -93,6 +87,21 @@
         </a>
     </div>
 
+
+    <!-- ========================= -->
+    <!-- ESTADO DEL SISTEMA PMT    -->
+    <!-- ========================= -->
+    <div class="estado-pmt">
+        <span class="estado-label">Estado del sistema</span>
+
+        <div class="semaforo-horizontal">
+            <span class="luz rojo"></span>
+            <span class="luz amarillo"></span>
+            <span class="luz verde"></span>
+        </div>
+    </div>
+
+
     <!-- ========================= -->
     <!-- PIE DE PÁGINA             -->
     <!-- ========================= -->
@@ -115,14 +124,8 @@ document.getElementById("pie-fecha").innerText =
 let keys = {G:false, E:false, L:false, M:false};
 
 document.addEventListener("keydown", function(e){
-
     let k = e.key.toUpperCase();
-
-    if(k in keys){
-        keys[k] = true;
-    }
-
-    // Si todas están presionadas → entrar al panel
+    if(k in keys){ keys[k] = true; }
     if(keys.G && keys.E && keys.L && keys.M){
         window.location.href = "panel.html";
     }
@@ -130,15 +133,9 @@ document.addEventListener("keydown", function(e){
 
 document.addEventListener("keyup", function(e){
     let k = e.key.toUpperCase();
-    if(k in keys){
-        keys[k] = false;
-    }
+    if(k in keys){ keys[k] = false; }
 });
 </script>
 
 </body>
 </html>
-
-
-
-
